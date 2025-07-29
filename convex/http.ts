@@ -30,6 +30,7 @@ http.route({
     const body = JSON.stringify(payload);
 
     const wh = new Webhook(webhookSecret);
+
     let evt: WebhookEvent;
 
     try {
@@ -49,7 +50,6 @@ http.route({
       const { id, first_name, last_name, image_url, email_addresses } = evt.data;
 
       const email = email_addresses[0].email_address;
-
       const name = `${first_name || ""} ${last_name || ""}`.trim();
 
       try {

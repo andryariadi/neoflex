@@ -1,3 +1,51 @@
+import { DumbbellIcon, HomeIcon, UserIcon } from "lucide-react";
+
+export const NAVBAR_LINKS = [
+  {
+    href: "/",
+    label: "Home",
+    icon: HomeIcon,
+  },
+  {
+    href: "/generate-program",
+    label: "Generate",
+    icon: DumbbellIcon,
+  },
+  {
+    href: "/profile",
+    label: "Profile",
+    icon: UserIcon,
+  },
+];
+
+export const FOOTER_LINKS = [
+  {
+    href: "/about",
+    label: "About",
+  },
+  {
+    href: "/terms",
+    label: "Terms",
+  },
+  {
+    href: "/privacy",
+    label: "Privacy",
+  },
+  {
+    href: "/contact",
+    label: "Contact",
+  },
+  {
+    href: "/blog",
+    label: "Blog",
+  },
+
+  {
+    href: "/help",
+    label: "Help",
+  },
+];
+
 export const USER_PROGRAMS = [
   {
     id: 1,
