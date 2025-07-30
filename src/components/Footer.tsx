@@ -28,7 +28,7 @@ const Footer = () => {
           {/* Links */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-2 text-sm">
             {FOOTER_LINKS.map((link) => (
-              <Link key={link.label} href={link.href} className="text-muted-foreground hover:text-primary transition-colors">
+              <Link key={link.label} href={link.href} className="text-muted-foreground hover:text-primary transition-colors duration-300">
                 {link.label}
               </Link>
             ))}
