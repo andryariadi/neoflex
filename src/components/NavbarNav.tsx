@@ -11,11 +11,11 @@ const NavbarNav = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="b-rose-500 flex items-center gap-5">
+    <nav className="b-rose-500 flex items-center gap-3 lg:gap-5">
       {isSignedIn ? (
         <>
           {NAVBAR_LINKS.map((link) => (
-            <Link key={link.label} href={link.href} className={`flex items-center gap-1.5 text-sm hover:text-primary hover:scale-105 transition-all duration-300 ${pathname === link.href && "text-primary"}`}>
+            <Link key={link.label} href={link.href} className={`hidden md:flex items-center gap-1.5 text-sm hover:text-primary hover:scale-105 transition-all duration-300 ${pathname === link.href && "text-primary"}`}>
               <link.icon size={16} />
               <span>{link.label}</span>
             </Link>

@@ -1,15 +1,14 @@
 import { FOOTER_LINKS } from "@/constants";
-import { ZapIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border bg-background/80 backdrop-blur-sm">
+    <footer className="dropendborder-t border-border bg-background/80 backdrop-blur-sm">
       {/* Top border glow */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
 
-      <div className="px-40 py-8">
+      <div className="px-3 md:px-12 lg:px-28 xl:px-40 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo and Copyright */}
           <div className="flex flex-col items-center md:items-start gap-2">
