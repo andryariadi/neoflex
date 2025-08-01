@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const UserPrograms = () => {
   return (
-    <section className="w-full max-w-[26rem] md:max-w-[42rem] lg:max-w-[55.5rem] xl:max-w-[60rem] 2xl:max-w-[63rem] mx-auto px-3 md:px-0 pt-20">
+    <section className="w-full max-w-[26rem] md:max-w-[42rem] lg:max-w-[55.5rem] xl:max-w-[60rem] 2xl:max-w-[63rem] mx-auto px-3 md:px-0 py-20">
       {/* PROGRAM TIMELINE */}
       <div className="bg-card/90 backdrop-blur-sm border border-border rounded-lg overflow-hidden mb-16">
         {/* HEADER BAR */}
@@ -159,6 +159,17 @@ const UserPrograms = () => {
             </CardFooter>
           </Card>
         ))}
+      </div>
+
+      {/* CTA section */}
+      <div className="mt-16 text-center">
+        <Link href="/generate-program">
+          <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg">
+            Generate Your Program
+            <Sparkles className="ml-2 h-5 w-5" />
+          </Button>
+        </Link>
+        <p className="text-muted-foreground mt-4">Join 500+ users with AI-customized fitness programs</p>
       </div>
     </section>
   );
