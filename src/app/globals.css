@@ -193,6 +193,9 @@ body {
     background-position: 0 100%;
   }
 }
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
 
 @keyframes slow-spin {
   from {
@@ -202,11 +205,6 @@ body {
     transform: rotate(360deg);
   }
 }
-
-.animate-scanline {
-  animation: scanline 8s linear infinite;
-}
-
 .animate-slow-spin {
   animation: slow-spin 12s linear infinite;
 }
@@ -222,7 +220,6 @@ body {
     height: 10%;
   }
 }
-
 .animate-sound-wave {
   animation: sound-wave 1.2s ease-in-out infinite;
 }
@@ -235,10 +232,10 @@ body {
     opacity: 1;
   }
 }
-
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-in-out forwards;
 }
+
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -253,6 +250,7 @@ body {
 .animate-pulse {
   animation: pulse 1.5s ease-in-out infinite;
 }
+
 @keyframes glitch {
   0% {
     transform: translate(0, 0);
