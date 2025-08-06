@@ -8,12 +8,13 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { vapi } from "@/lib/vapi";
 import { Button } from "./ui/button";
+import { ChatMessage, MessageType } from "@/lib/types";
 
 const GenerateProgram = () => {
   const [callActive, setCallActive] = useState(false);
   const [connecting, setConnecting] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [callEnded, setCallEnded] = useState(false);
 
   const messageContainerRef = useRef<HTMLDivElement | null>(null);
@@ -68,9 +69,14 @@ const GenerateProgram = () => {
       setIsSpeaking(false);
     };
 
-    const handleMessage = (message: any) => {
+    const handleMessage = (message: MessageType) => {
+      console.log({ message }, "<---handleMessage");
+
       if (message.type === "transcript" && message.transcriptType === "final") {
         const newMessage = { content: message.transcript, role: message.role };
+
+        console.log({ newMessage }, "<---handleMessage2");
+
         setMessages((prev) => [...prev, newMessage]);
       }
     };
@@ -102,12 +108,14 @@ const GenerateProgram = () => {
 
         const fullName = user?.firstName ? `${user.firstName} ${user.lastName || ""}`.trim() : "There";
 
-        await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
+        const res = await vapi.start(process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!, undefined, undefined, process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
           variableValues: {
             full_name: fullName,
-            // user_id: user?.id || "guest",
+            user_id: user?.id,
           },
         });
+
+        console.log({ res }, "<---toggleCall3");
       } catch (error) {
         console.log("Error starting call:", error);
         setConnecting(false);
@@ -118,10 +126,12 @@ const GenerateProgram = () => {
   if (!isLoaded) return <GenerateProgramSkeleton />;
   if (!user) return null;
 
+  console.log({ messages }, "<---generateProgram");
+
   return (
     <div className="space-y-8">
       {/* CALL CONTAINER */}
-      <section className="bg-rose-600 flex items-center gap-8">
+      <section className="b-rose-600 flex items-center gap-8">
         {/* AI CARD */}
         <Card className="w-md bg-card/90 backdrop-blur-sm border border-border overflow-hidden relative">
           <div className="b-green-500 aspect-video flex flex-col items-center justify-center p-6 relative">
@@ -197,14 +207,16 @@ const GenerateProgram = () => {
           <div className="space-y-3">
             {messages.map((msg, index) => (
               <div key={index} className="message-item animate-fadeIn">
-                <div className="font-semibold text-xs text-muted-foreground mb-1">{msg.role === "assistant" ? "NeoFlex AI" : "You"}:</div>
+                <span className="font-semibold text-xs text-muted-foreground mb-1">{msg.role === "assistant" ? "NeoFlex AI" : "You"}:</span>
+
                 <p className="text-foreground">{msg.content}</p>
               </div>
             ))}
 
             {callEnded && (
               <div className="message-item animate-fadeIn">
-                <div className="font-semibold text-xs text-primary mb-1">System:</div>
+                <span className="font-semibold text-xs text-primary mb-1">System:</span>
+
                 <p className="text-foreground">Your fitness program has been created! Redirecting to your profile...</p>
               </div>
             )}
